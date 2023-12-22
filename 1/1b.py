@@ -16,12 +16,18 @@
 import re
 import sys
 
-r = re.compile('\d|oneight|threeight|fiveight|nineight|sevenine|eightwo|eighthree|one|two|three|four|five|six|seven|eight|nine')
+r = re.compile('\d|one|two|three|four|five|six|seven|eight|nine')
 sum = 0;
 for line in sys.stdin:
     line = line.rstrip()        # Remove \n
     print(line)
-    digits = r.findall(line)
+    cursor = 0
+    m = r.search(line[cursor:])
+    digits = []
+    while m:
+        digits.append(m.group(0))
+        cursor += m.start() + 1
+        m = r.search(line[cursor:])
     print(digits)
 
     for i, mult in [(0, 10),(-1, 1)]:
@@ -30,9 +36,9 @@ for line in sys.stdin:
                 val = 0
             case '1'|'one':
                 val = 1
-            case '2'|'two'|'eightwo':
+            case '2'|'two':
                 val = 2
-            case '3'|'three'|'eighthree':
+            case '3'|'three':
                 val = 3
             case '4'|'four':
                 val = 4
@@ -42,9 +48,9 @@ for line in sys.stdin:
                 val = 6
             case '7'|'seven':
                 val = 7
-            case '8'|'eight'|'oneight'|'threeight'|'fiveight'|'nineight':
+            case '8'|'eight':
                 val = 8
-            case '9'|'nine'|'sevenine':
+            case '9'|'nine':
                 val = 9
         print(val * mult)
         sum += val * mult
