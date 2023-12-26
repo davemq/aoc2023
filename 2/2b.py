@@ -1,17 +1,17 @@
 # As you walk, the Elf shows you a small bag and some cubes which are
 # either red, green, or blue. Each time you play this game, he will hide
 # a secret number of cubes of each color in the bag, and your goal is to
-# figure out information about the number of cubes. 
+# figure out information about the number of cubes.
 
 # To get information, once a bag has been loaded with cubes, the Elf
 # will reach into the bag, grab a handful of random cubes, show them to
 # you, and then put them back in the bag. He'll do this a few times per
-# game. 
+# game.
 
 # You play several games and record the information from each game (your
 # puzzle input). Each game is listed with its ID number (like the 11 in
 # Game 11: ...) followed by a semicolon-separated list of subsets of
-# cubes that were revealed from the bag (like 3 red, 5 green, 4 blue). 
+# cubes that were revealed from the bag (like 3 red, 5 green, 4 blue).
 
 # For example, the record of a few games might look like this:
 
@@ -24,18 +24,18 @@
 # In game 1, three sets of cubes are revealed from the bag (and then put
 # back again). The first set is 3 blue cubes and 4 red cubes; the second
 # set is 1 red cube, 2 green cubes, and 6 blue cubes; the third set is
-# only 2 green cubes. 
+# only 2 green cubes.
 
 # The Elf would first like to know which games would have been possible
 # if the bag contained only 12 red cubes, 13 green cubes, and 14 blue
-# cubes? 
+# cubes?
 
 # In the example above, games 1, 2, and 5 would have been possible if
 # the bag had been loaded with that configuration. However, game 3 would
 # have been impossible because at one point the Elf showed you 20 red
 # cubes at once; similarly, game 4 would also have been impossible
 # because the Elf showed you 15 blue cubes at once. If you add up the
-# IDs of the games that would have been possible, you get 8. 
+# IDs of the games that would have been possible, you get 8.
 
 # Determine which games would have been possible if the bag had been
 # loaded with only 12 red cubes, 13 green cubes, and 14 blue cubes. What
@@ -59,13 +59,13 @@ import re
 import sys
 
 bag = {}
-bag['red'] = 12
-bag['green'] = 13
-bag['blue'] = 14
+bag["red"] = 12
+bag["green"] = 13
+bag["blue"] = 14
 
 # common regular expressions
-gameid = re.compile(r'Game (\d+)')
-cube   = re.compile(r'(\d+) (red|green|blue)')
+gameid = re.compile(r"Game (\d+)")
+cube = re.compile(r"(\d+) (red|green|blue)")
 
 sum = 0
 for line in sys.stdin:
@@ -76,9 +76,9 @@ for line in sys.stdin:
     id = int(m.group(1))
     games = parts[1].split("; ")
     maxima = {}
-    maxima['red'] = 0
-    maxima['green'] = 0
-    maxima['blue'] = 0
+    maxima["red"] = 0
+    maxima["green"] = 0
+    maxima["blue"] = 0
     for g in games:
         cubes = g.split(", ")
         for c in cubes:
@@ -89,13 +89,9 @@ for line in sys.stdin:
             if value > maxima[color]:
                 maxima[color] = value
     power = 1
-    for color in ['red', 'green', 'blue']:
+    for color in ["red", "green", "blue"]:
         power *= maxima[color]
     print(power)
     sum += power
 
 print(sum)
-
-
-        
-    

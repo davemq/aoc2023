@@ -2,10 +2,10 @@
 # each line originally contained a specific calibration value that the
 # Elves now need to recover. On each line, the calibration value can be
 # found by combining the first digit and the last digit (in that order)
-# to form a single two-digit number. 
-# 
+# to form a single two-digit number.
+#
 # For example:
-# 
+#
 # 1abc2
 # pqr3stu8vwx
 # a1b2c3d4e5f
@@ -16,10 +16,10 @@
 import re
 import sys
 
-sum = 0;
+sum = 0
 for line in sys.stdin:
-    line = line.rstrip()        # Remove \n
-    digits = re.findall(r'\d', line)
+    line = line.rstrip()  # Remove \n
+    digits = re.findall(r"\d", line)
     dig1 = int(digits[0]) * 10
     dig2 = int(digits[-1])
     sum += dig1 + dig2
