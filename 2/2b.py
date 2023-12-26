@@ -89,7 +89,7 @@ for line in sys.stdin:
             if value > maxima[color]:
                 maxima[color] = value
     power = 1
-    for color in ["red", "green", "blue"]:
+    for color in ("red", "green", "blue"):
         power *= maxima[color]
     print(power)
     sum += power

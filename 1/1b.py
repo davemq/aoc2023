@@ -30,7 +30,7 @@ for line in sys.stdin:
         m = r.search(line[cursor:])
     print(digits)
 
-    for i, mult in [(0, 10), (-1, 1)]:
+    for i, mult in ((0, 10), (-1, 1)):
         match digits[i]:
             case "0":
                 val = 0
